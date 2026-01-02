@@ -15,3 +15,13 @@ sealed interface StatusUiSiswa {
     object Error : StatusUiSiswa
     object Loading : StatusUiSiswa
 }
+class HomeViewModel(
+    private val repositorySiswa: RepositorySiswa
+) : ViewModel() {
+
+    var statusUiSiswa: StatusUiSiswa by mutableStateOf(StatusUiSiswa.Loading)
+        private set
+
+    init {
+        loadSiswa()
+    }
