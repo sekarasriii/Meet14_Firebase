@@ -5,7 +5,7 @@ import com.example.meet14_firebase.repositori.AplikasiDataSiswa
 import androidx.lifecycle.viewmodel.CreationExtras
 import  androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.lifecycle.viewmodel.initializer
-
+import androidx.lifecycle.createSavedStateHandle
 
 fun CreationExtras.aplikasiDataSiswa(): AplikasiDataSiswa = (
         this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as
@@ -16,5 +16,8 @@ object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer { HomeViewModel(aplikasiDataSiswa().container.repositorySiswa) }
         initializer { EntryViewModel( aplikasiDataSiswa().container.repositorySiswa) }
+        //tambahan
+        initializer { DetailViewModel(this.createSavedStateHandle(), aplikasiDataSiswa().container.repositorySiswa) }
+        initializer { EditViewModel(this.createSavedStateHandle(),aplikasiDataSiswa().container.repositorySiswa) }
     }
 }
